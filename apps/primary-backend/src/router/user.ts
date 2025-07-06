@@ -130,14 +130,15 @@ router.post("/signin", async (req, res) : Promise<any> => {
         id: user.id
     }, "secret");
 
-    const options = {
-        httpOnly: true,
-        secure: true
-    }
 
-    res.status(200)
-        .cookie("accessToken", token)
-        .json({token, options, message: "Logged in"})
+    res
+      .cookie("accessToken", token, {
+        httpOnly: true,
+        secure: false,
+        sameSite: "lax",
+        path: "/"
+    })
+      .json({ token, message: "Logged in" });
     // res.json({
     //     token: token,
     // });

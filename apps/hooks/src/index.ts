@@ -13,6 +13,7 @@ app.post("/hooks/catch/:userId/:zapId", async (req, res) => {
     const body = req.body;
 
     // store in db a new trigger
+    //@ts-ignore
     await client.$transaction(async tx => {
         const run = await tx.zapRun.create({
             data: {

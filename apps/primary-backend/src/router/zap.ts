@@ -16,7 +16,7 @@ router.post("/", authMiddleware, async (req: Request, res: Response): Promise<an
             message: "Incorrect inputs"
         });
     }
-
+    //@ts-ignore
     const zapId = await prismaClient.$transaction(async tx => {
         const zap = await prismaClient.zap.create({
             data: {
